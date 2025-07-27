@@ -1,0 +1,7 @@
+package pl.sejdii.groovy.parser
+
+import spock.lang.Specification
+
+class GroovyUnusedImportsRemoverTest extends Specification {
+
+}

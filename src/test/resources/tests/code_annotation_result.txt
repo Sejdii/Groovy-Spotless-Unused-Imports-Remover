@@ -1,0 +1,9 @@
+import groovy.transform.CompileStatic
+
+@CompileStatic
+class GroovyUnusedImportsRemover {
+
+    static String removeUnusedImports(String sourceCode) {
+
+    }
+}

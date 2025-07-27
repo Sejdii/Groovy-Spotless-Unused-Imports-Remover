@@ -1,0 +1,9 @@
+package pl.sejdii.groovy.parser
+
+import java.time.ZonedDateTime
+
+static void main(String[] args) {
+	println "Hello world!"
+
+	ZonedDateTime time = ZonedDateTime.parse("")
+}

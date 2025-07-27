@@ -1,0 +1,6 @@
+package pl.sejdii.groovy.parser
+
+
+static void main(String[] args) {
+	println "Hello world!"
+}
