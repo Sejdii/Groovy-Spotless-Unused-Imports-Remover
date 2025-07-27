@@ -17,6 +17,7 @@ class GroovyUnusedImportsRemoverTest extends Specification {
 		readFile("code_class_extends_with_unused_import") | readFile("code_class_extends_with_unused_import_result")
 		readFile("code_annotation") | readFile("code_annotation_result")
 		readFile("code_all_imports_used") | readFile("code_all_imports_used_result")
+		readFile("code_lambda_parameter") | readFile("code_lambda_parameter_result")
  	}
 
 	private String readFile(String fileName) {

@@ -1,11 +1,11 @@
 package pl.sejdii.groovy.parser
 
-import java.time.LocalDateTime
-import java.time.OffsetDateTime
-import java.time.ZonedDateTime
+import java.nio.file.Path
+import java.net.URI
 
 static void main(String[] args) {
-	println "Hello world!"
-
-	ZonedDateTime dateTime = ZonedDateTime.parse("")
+	List.of(Path.of("x"), Path.of("y"))
+		.stream()
+		.map {it.toUri()}
+		.each { URI parameter -> print parameter}
 }

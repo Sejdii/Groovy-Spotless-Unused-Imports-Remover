@@ -1,0 +1,11 @@
+package pl.sejdii.groovy.parser
+
+import java.nio.file.Path
+
+static void main(String[] args) {
+	List<Path> paths = List.of(Path.of("x"), Path.of("y"))
+
+	paths.each {
+		Path parameter -> print parameter
+	}
+}
