@@ -111,6 +111,16 @@ class UsageVisitor implements GroovyClassVisitor {
 				visitStatement(whileStmt.getLoopBlock())
 				break
 
+			case SwitchStatement:
+				SwitchStatement switchStatement = (SwitchStatement) stmt
+				switchStatement.getCaseStatements().each {visitStatement(it)}
+				break
+
+			case CaseStatement:
+				CaseStatement caseStatement = (CaseStatement) stmt
+				visitStatement(caseStatement.getCode())
+				break
+
 			case TryCatchStatement:
 				TryCatchStatement tryStmt = (TryCatchStatement) stmt
 				visitStatement(tryStmt.getTryStatement())
@@ -197,6 +207,11 @@ class UsageVisitor implements GroovyClassVisitor {
 				BinaryExpression binExpr = (BinaryExpression) expr
 				visitExpression(binExpr.getLeftExpression())
 				visitExpression(binExpr.getRightExpression())
+				break
+
+			case ClosureExpression:
+				ClosureExpression closureExpr = (ClosureExpression) expr
+				closureExpr.getParameters().each { addUsedClass(it.getType().getName()) }
 				break
 		}
 	}

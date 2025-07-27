@@ -2,7 +2,6 @@ package pl.sejdii.groovy.parser
 
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression
 import org.codehaus.groovy.ast.expr.Expression
-import java.net.URI
 
 
 static void main(String[] args) {

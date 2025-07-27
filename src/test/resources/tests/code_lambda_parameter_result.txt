@@ -1,11 +1,22 @@
 package pl.sejdii.groovy.parser
 
+import org.codehaus.groovy.ast.MethodNode
+import org.codehaus.groovy.ast.Parameter
+
 import java.nio.file.Path
+import java.net.URI
 
 static void main(String[] args) {
-	List<Path> paths = List.of(Path.of("x"), Path.of("y"))
+	List.of(Path.of("x"), Path.of("y"))
+		.stream()
+		.map {it.toUri()}
+		.each { URI parameter -> print parameter}
+}
 
-	paths.each {
-		Path parameter -> print parameter
+private void visitMethod(MethodNode node) {
+	node.getParameters().each { Parameter param ->
+		if (param.getType()) {
+			addUsedClass(param.getType().getName())
+		}
 	}
 }

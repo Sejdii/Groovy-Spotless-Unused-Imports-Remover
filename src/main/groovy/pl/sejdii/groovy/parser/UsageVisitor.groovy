@@ -13,6 +13,7 @@ import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.ast.expr.CastExpression
 import org.codehaus.groovy.ast.expr.ClassExpression
+import org.codehaus.groovy.ast.expr.ClosureExpression
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression
 import org.codehaus.groovy.ast.expr.Expression
 import org.codehaus.groovy.ast.expr.ListExpression
@@ -22,11 +23,13 @@ import org.codehaus.groovy.ast.expr.MethodCallExpression
 import org.codehaus.groovy.ast.expr.PropertyExpression
 import org.codehaus.groovy.ast.expr.VariableExpression
 import org.codehaus.groovy.ast.stmt.BlockStatement
+import org.codehaus.groovy.ast.stmt.CaseStatement
 import org.codehaus.groovy.ast.stmt.CatchStatement
 import org.codehaus.groovy.ast.stmt.ExpressionStatement
 import org.codehaus.groovy.ast.stmt.ForStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.Statement
+import org.codehaus.groovy.ast.stmt.SwitchStatement
 import org.codehaus.groovy.ast.stmt.TryCatchStatement
 import org.codehaus.groovy.ast.stmt.WhileStatement
 
@@ -138,6 +141,16 @@ class UsageVisitor implements GroovyClassVisitor {
 				visitStatement(whileStmt.getLoopBlock())
 				break
 
+			case SwitchStatement:
+				SwitchStatement switchStatement = (SwitchStatement) stmt
+				switchStatement.getCaseStatements().each {visitStatement(it)}
+				break
+
+			case CaseStatement:
+				CaseStatement caseStatement = (CaseStatement) stmt
+				visitStatement(caseStatement.getCode())
+				break
+
 			case TryCatchStatement:
 				TryCatchStatement tryStmt = (TryCatchStatement) stmt
 				visitStatement(tryStmt.getTryStatement())
@@ -224,6 +237,11 @@ class UsageVisitor implements GroovyClassVisitor {
 				BinaryExpression binExpr = (BinaryExpression) expr
 				visitExpression(binExpr.getLeftExpression())
 				visitExpression(binExpr.getRightExpression())
+				break
+
+			case ClosureExpression:
+				ClosureExpression closureExpr = (ClosureExpression) expr
+				closureExpr.getParameters().each { addUsedClass(it.getType().getName()) }
 				break
 		}
 	}
