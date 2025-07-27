@@ -2,7 +2,6 @@ package pl.sejdii.groovy.parser
 
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression
 import org.codehaus.groovy.ast.expr.Expression
-import java.net.URI
 
 
 static void main(String[] args) {
@@ -12,7 +11,6 @@ private void visitExpression(Expression expr) {
 	switch (expr) {
 		case ConstructorCallExpression:
 			ConstructorCallExpression constructor = (ConstructorCallExpression) expr
-			addUsedClass(constructor.getType().getName())
 			visitExpression(constructor.getArguments())
 			break
 	}

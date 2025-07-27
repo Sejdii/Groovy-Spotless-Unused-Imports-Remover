@@ -19,7 +19,7 @@ class GroovyUnusedImportsRemoverTest extends Specification {
 		readFile("code_all_imports_used") | readFile("code_all_imports_used_result")
 		readFile("code_lambda_parameter") | readFile("code_lambda_parameter_result")
 		readFile("code_switch") | readFile("code_switch_result")
- 	}
+	}
 
 	private String readFile(String fileName) {
 		InputStream is = getClass().getClassLoader().getResourceAsStream("tests/${fileName}.txt")
