@@ -1,4 +1,5 @@
 import com.diffplug.spotless.FormatterFunc
+import pl.sejdii.groovy.parser.GroovyUnusedImportsRemover
 import java.io.Serializable
 
 plugins {
@@ -26,6 +27,7 @@ dependencies {
 buildscript {
     dependencies {
         classpath("com.diffplug.spotless:spotless-lib:3.3.1")
+        classpath(files("libs/Groovy-Spotless-Unused-Imports-Remover-1.0-SNAPSHOT.jar"))
     }
 }
 
