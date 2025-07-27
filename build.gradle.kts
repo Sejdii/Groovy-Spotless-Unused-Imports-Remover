@@ -49,11 +49,3 @@ spotless {
         ktlint()
     }
 }
-
-gradle.taskGraph.whenReady {
-    allTasks.forEach {
-        if (it.name.startsWith("spotless")) {
-            it.outputs.upToDateWhen { false }
-        }
-    }
-}

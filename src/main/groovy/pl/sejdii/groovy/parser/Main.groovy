@@ -5,6 +5,7 @@ import org.codehaus.groovy.ast.expr.Expression
 
 
 static void main(String[] args) {
+	print "Hello World"
 }
 
 private void visitExpression(Expression expr) {
